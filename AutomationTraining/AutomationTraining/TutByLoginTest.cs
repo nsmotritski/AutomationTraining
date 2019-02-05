@@ -1,17 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using AutomationTraining;
-using OpenQA.Selenium.Interactions;
 
 namespace AutomationTraining
 {
@@ -44,33 +36,29 @@ namespace AutomationTraining
         [Test]
         public void TutByLoginTest()
         {
+            //Open tut.by hompage
             _driver.Url = "https://tut.by";
             _driver.Manage().Window.Maximize();
-            var wait = new WebDriverWait(_driver, _timeOut);
 
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(Selectors.EnterButtonSelector)));
+            //wait for EnterButton displayed and open login popup
             _driver.WaitForElement(By.CssSelector(Selectors.EnterButtonSelector));
             var enterButton = _driver.FindElement(By.CssSelector(Selectors.EnterButtonSelector));
             enterButton.Click();
 
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(Selectors.UsernameInputSelector)));
+            //provide credentials and login
             _driver.WaitForElement(By.CssSelector(Selectors.UsernameInputSelector));
-            var usernameInput = wait.Until(x => x.FindElement(By.CssSelector(Selectors.UsernameInputSelector)));
-            var passwordInput = wait.Until(x => x.FindElement(By.CssSelector(Selectors.PasswordInputSelector)));
-            //var usernameInput = driver.FindElement(By.CssSelector("input[name=\"login\"]"));
-            //var passwordInput = driver.FindElement(By.CssSelector("input[name=\"password\"]"));
-            usernameInput.Click();
+            var usernameInput = _driver.FindElement(By.CssSelector(Selectors.UsernameInputSelector));
+            var passwordInput = _driver.FindElement(By.CssSelector(Selectors.PasswordInputSelector));
             _driver.TypeTextToElement(usernameInput, Username);
-            passwordInput.Click();
             _driver.TypeTextToElement(passwordInput, Password);
-            //usernameInput.SendKeys(Username);
-            //passwordInput.SendKeys(Password);
-            var loginButton = _driver.FindElement(By.CssSelector(Selectors.UsernameSpanSelector));
+            var loginButton = _driver.FindElement(By.CssSelector(Selectors.LoginButton));
             loginButton.Click();
-            var usernameSpan = _driver.FindElement(By.CssSelector(Selectors.AuthenticationForm));
+
+            //validate that test user is logged in
+            var usernameSpan = _driver.FindElement(By.CssSelector(Selectors.UsernameSpanSelector));
+
+            Assert.AreEqual("Selenium Test", usernameSpan.Text, "User 'Selenium Test' is not logged in!");
         }
-
-
 
         [TearDown]
         public void CloseBrowser()
