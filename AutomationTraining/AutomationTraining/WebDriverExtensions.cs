@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace AutomationTraining
 {
@@ -13,7 +9,10 @@ namespace AutomationTraining
     {
         public static bool WaitForElement(this IWebDriver driver, By by)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15))
+            {
+                PollingInterval = TimeSpan.FromMilliseconds(600)
+            };
             var element = wait.Until(condition =>
             {
                 try
