@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tests>
+  <credential user="seleniumtests@tut.by" password="123456789zxcvbn"/>
+  <credential user="seleniumtests2@tut.by" password="123456789zxcvbn"/>
+  <links number="3"/>
+</tests>
