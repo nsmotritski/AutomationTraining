@@ -11,8 +11,6 @@ namespace AutomationTraining
     public class Task20
     {
         private IWebDriver _driver;
-        private const string Username = "seleniumtests@tut.by";
-        private const string Password = "123456789zxcvbn";
 
         public static string AssemblyDirectory
         {
@@ -33,8 +31,9 @@ namespace AutomationTraining
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
-        [Test]
-        public void TutByLoginTest()
+        [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Selenium Test")]
+        [TestCase("seleniumtests2@tut.by", "123456789zxcvbn", "Selenium Test")]
+        public void TutByLoginTest(string username, string password, string expectedUser)
         {
             //Open tut.by hompage
             _driver.Url = "https://tut.by";
@@ -50,8 +49,8 @@ namespace AutomationTraining
             _driver.WaitForElement(By.CssSelector(Selectors.UsernameInputSelector));
             var usernameInput = _driver.FindElement(By.CssSelector(Selectors.UsernameInputSelector));
             var passwordInput = _driver.FindElement(By.CssSelector(Selectors.PasswordInputSelector));
-            _driver.TypeTextToElement(usernameInput, Username);
-            _driver.TypeTextToElement(passwordInput, Password);
+            _driver.TypeTextToElement(usernameInput, username);
+            _driver.TypeTextToElement(passwordInput, password);
             var loginButton = _driver.FindElement(By.CssSelector(Selectors.LoginButton));
             loginButton.Click();
 
@@ -59,7 +58,7 @@ namespace AutomationTraining
             _driver.WaitForElement(By.CssSelector(Selectors.UsernameSpanSelector));
             var usernameSpan = _driver.FindElement(By.CssSelector(Selectors.UsernameSpanSelector));
 
-            Assert.AreEqual("Selenium Test", usernameSpan.Text, "User 'Selenium Test' is not logged in!");
+            Assert.AreEqual(expectedUser, usernameSpan.Text, "User 'Selenium Test' is not logged in!");
         }
 
         [TearDown]
