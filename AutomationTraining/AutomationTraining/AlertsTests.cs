@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace AutomationTraining
 {
+    /* From Task 50:
+     * 6. Create 3 tests for alerts (URL - https://the-internet.herokuapp.com/javascript_alerts).
+     */
     public class AlertsTests
     {
         private IWebDriver _driver;
@@ -16,22 +16,10 @@ namespace AutomationTraining
         private const string ExpectedPromptText = "You entered: ";
         private static readonly Random Random = new Random();
 
-        public static string AssemblyDirectory
-        {
-            get
-            {
-                var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
-
         [SetUp]
         public void StartBrowser()
         {
-            var pathToDriver = Path.Combine(AssemblyDirectory, "drivers");
-            _driver = new ChromeDriver(pathToDriver);
+            _driver = WebDriverHelper.WebDriverHelper.DeployWebDriver();
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 

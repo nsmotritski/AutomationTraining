@@ -1,34 +1,25 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
-using System.IO;
-using System.Reflection;
 
 namespace AutomationTraining
 {
+    /* From Task 50:
+     * 5. Create test with frames (URL - https://the-internet.herokuapp.com/iframe).
+     * Write the following text – Hello world!  and check it.
+     * Do not use menu File -> New Document.
+     * Pay your attention that world must be with bold font
+     */
     public class FrameTest
     {
         private IWebDriver _driver;
         private const string RegularText = "Hello";
         private const string BoldText = "world!";
 
-        public static string AssemblyDirectory
-        {
-            get
-            {
-                var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
-
         [SetUp]
         public void StartBrowser()
         {
-            var pathToDriver = Path.Combine(AssemblyDirectory, "drivers");
-            _driver = new ChromeDriver(pathToDriver);
+            _driver = WebDriverHelper.WebDriverHelper.DeployWebDriver();
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
