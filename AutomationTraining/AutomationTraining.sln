@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task20", "AutomationTrainin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDriverHelper", "WebDriverHelper\WebDriverHelper.csproj", "{4E5EBBD0-4599-45C2-B81F-BD34BE2DF9EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task50", "Task50\Task50.csproj", "{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4E5EBBD0-4599-45C2-B81F-BD34BE2DF9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E5EBBD0-4599-45C2-B81F-BD34BE2DF9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E5EBBD0-4599-45C2-B81F-BD34BE2DF9EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System;
+using AutomationTraining;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
+using Task50.Locators;
 
-namespace AutomationTraining
+namespace Task50
 {
     /* From Task 50:
      * 5. Create test with frames (URL - https://the-internet.herokuapp.com/iframe).

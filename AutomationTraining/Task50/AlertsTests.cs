@@ -1,9 +1,10 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Linq;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using Task50.Locators;
 
-namespace AutomationTraining
+namespace Task50
 {
     /* From Task 50:
      * 6. Create 3 tests for alerts (URL - https://the-internet.herokuapp.com/javascript_alerts).

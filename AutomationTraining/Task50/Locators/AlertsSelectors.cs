@@ -1,4 +1,4 @@
-﻿namespace AutomationTraining
+﻿namespace Task50.Locators
 {
     public class AlertsSelectors
     {
