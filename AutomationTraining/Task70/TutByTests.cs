@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using AutomationTraining;
 using Task70.Locators;
 
 namespace Task70
@@ -29,6 +30,9 @@ namespace Task70
                                     .PerformLogin(username, password)
                                     .GetLoggedInUser();
 
+            //take screenshot before the final check
+            _driver.TakeScreenshot("TutByLoginTest.png");
+
             //validate logged in user
             Assert.AreEqual(expectedUser, loggedUser, "User 'Selenium Test' is not logged in!");
         }
@@ -47,6 +51,9 @@ namespace Task70
                 .Logout()
                 .EnterButton.Text;
 
+            //take screenshot before the final check
+            _driver.TakeScreenshot("TutByLogoutTest.png");
+
             //validate user was logged out
             Assert.AreEqual(homePageButtonText, buttonText, "User was not logged out!");
         }
@@ -63,6 +70,9 @@ namespace Task70
             var loggedUser = pages.homePage().ClickEnterButton()
                 .PerformLogin(username, password)
                 .GetLoggedInUser();
+
+            //take screenshot before the final check
+            _driver.TakeScreenshot("PageFactoryTutByLoginTest.png");
 
             //validate logged in user
             Assert.AreEqual(expectedUser, loggedUser, "User 'Selenium Test' is not logged in!");
@@ -81,6 +91,9 @@ namespace Task70
                 .PerformLogin(username, password)
                 .Logout()
                 .EnterButton.Text;
+
+            //take screenshot before the final check
+            _driver.TakeScreenshot("PageFactoryTutByLogoutTest.png");
 
             //validate user was logged out
             Assert.AreEqual(homePageButtonText, buttonText, "User was not logged out!");

@@ -29,6 +29,5 @@ namespace WebDriverHelper
                 return Path.GetDirectoryName(path);
             }
         }
-
     }
 }
