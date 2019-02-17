@@ -8,7 +8,7 @@ namespace Task70.Locators
         private IWebDriver _driver;
 
         [FindsBy(How = How.CssSelector, Using = "a[data-target-popup=\"authorize-form\"]")]
-        private IWebElement EnterButton;
+        public IWebElement EnterButton;
 
         public TutByHomePage(IWebDriver driver)
         {

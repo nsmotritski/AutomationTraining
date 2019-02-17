@@ -33,6 +33,24 @@ namespace Task70
             Assert.AreEqual(expectedUser, loggedUser, "User 'Selenium Test' is not logged in!");
         }
 
+        [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Войти")]
+        public void TutByLogoutTest(string username, string password, string homePageButtonText)
+        {
+            //Open tut.by hompage
+            _driver.Url = "https://tut.by";
+            _driver.Manage().Window.Maximize();
+
+            //perform login and logout (with methods chaining)
+            TutByHomePage homePage = new TutByHomePage(_driver);
+            var buttonText = homePage.ClickEnterButton()
+                .PerformLogin(username, password)
+                .Logout()
+                .EnterButton.Text;
+
+            //validate user was logged out
+            Assert.AreEqual(homePageButtonText, buttonText, "User was not logged out!");
+        }
+
         [TearDown]
         public void CloseBrowser()
         {

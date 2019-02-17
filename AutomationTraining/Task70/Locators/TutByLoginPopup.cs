@@ -44,6 +44,7 @@ namespace Task70.Locators
             setUsername(username);
             setPassword(password);
             clickLoginButton();
+
             return new TutByMemberPage(_driver);
         }
     }
