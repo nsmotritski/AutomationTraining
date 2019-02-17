@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Locators\Factory.cs" />
     <Compile Include="Locators\TutByMemberPage.cs" />
     <Compile Include="Locators\TutByLoginPopup.cs" />
     <Compile Include="Locators\TutByHomePage.cs" />
