@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D7AF06E-AF38-4E2F-B749-1277BE8CD648}</ProjectGuid>
+    <ProjectGuid>{87B6C62F-D31B-470F-B9D1-C8CDF5D61078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Task50</RootNamespace>
-    <AssemblyName>Task50</AssemblyName>
+    <RootNamespace>Task70</RootNamespace>
+    <AssemblyName>Task70</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -49,22 +49,25 @@
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver.Support, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.47.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlertsTests.cs" />
-    <Compile Include="FrameTest.cs" />
-    <Compile Include="Locators\AlertsSelectors.cs" />
-    <Compile Include="Locators\FrameSelectors.cs" />
+    <Compile Include="Locators\TutByMemberPage.cs" />
+    <Compile Include="Locators\TutByLoginPopup.cs" />
+    <Compile Include="Locators\TutByHomePage.cs" />
+    <Compile Include="TutByTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WebDriverHelper\WebDriverHelper.csproj">
-      <Project>{4E5EBBD0-4599-45C2-B81F-BD34BE2DF9EC}</Project>
+      <Project>{4e5ebbd0-4599-45c2-b81f-bd34be2df9ec}</Project>
       <Name>WebDriverHelper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
