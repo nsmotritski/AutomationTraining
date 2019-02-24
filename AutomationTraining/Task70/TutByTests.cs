@@ -1,12 +1,16 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using Allure.Commons;
+using Allure.NUnit.Attributes;
 using AutomationTraining;
 using Task70.Locators;
 
 namespace Task70
 {
-    public class TutByTests
+    [AllureSuite("Suite without base class")]
+    [AllureEpic("Epic story")]
+    public class TutByTests : AllureReport
     {
         private IWebDriver _driver;
 
