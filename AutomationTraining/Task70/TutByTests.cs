@@ -4,6 +4,7 @@ using System;
 using Allure.Commons;
 using Allure.NUnit.Attributes;
 using AutomationTraining;
+using NUnit.Framework.Interfaces;
 using Task70.Locators;
 
 namespace Task70
@@ -21,6 +22,10 @@ namespace Task70
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
+        [AllureLink("1")]
+        [AllureOwner("Nikolai Smotritski")]
+        [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
+        [AllureTest("Test login to tut.by using PageObject")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Selenium Test")]
         public void TutByLoginTest(string username, string password, string expectedUser)
         {
@@ -41,6 +46,10 @@ namespace Task70
             Assert.AreEqual(expectedUser, loggedUser, "User 'Selenium Test' is not logged in!");
         }
 
+        [AllureLink("2")]
+        [AllureOwner("Nikolai Smotritski")]
+        [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
+        [AllureTest("Test logout to tut.by using PageObject")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Войти")]
         public void TutByLogoutTest(string username, string password, string homePageButtonText)
         {
@@ -62,6 +71,10 @@ namespace Task70
             Assert.AreEqual(homePageButtonText, buttonText, "User was not logged out!");
         }
 
+        [AllureLink("3")]
+        [AllureOwner("Nikolai Smotritski")]
+        [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
+        [AllureTest("Test login to tut.by using PageFactory")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Selenium Test")]
         public void PageFactoryTutByLoginTest(string username, string password, string expectedUser)
         {
@@ -82,6 +95,10 @@ namespace Task70
             Assert.AreEqual(expectedUser, loggedUser, "User 'Selenium Test' is not logged in!");
         }
 
+        [AllureLink("4")]
+        [AllureOwner("Nikolai Smotritski")]
+        [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
+        [AllureTest("Test logout to tut.by using PageFactory")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Войти")]
         public void PageFactoryTutByLogoutTest(string username, string password, string homePageButtonText)
         {
@@ -106,6 +123,10 @@ namespace Task70
         [TearDown]
         public void CloseBrowser()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                _driver.TakeScreenshot(TestContext.CurrentContext.Test.Properties["AllureTest"].ToString());
+            }
             _driver.Close();
         }
     }
