@@ -5,12 +5,16 @@ using Allure.Commons;
 using Allure.NUnit.Attributes;
 using AutomationTraining;
 using NUnit.Framework.Interfaces;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using Task70.Locators;
 
 namespace Task70
 {
     [AllureSuite("Suite without base class")]
     [AllureEpic("Epic story")]
+    [TestFixture]
+    [Parallelizable]
     public class TutByTests : AllureReport
     {
         private IWebDriver _driver;
@@ -18,7 +22,15 @@ namespace Task70
         [SetUp]
         public void StartBrowser()
         {
-            _driver = WebDriverHelper.WebDriverHelper.DeployWebDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--start-maximized");
+            options.AddAdditionalCapability("SAUCE_USERNAME","nsmotritsky");
+            options.AddAdditionalCapability("SAUCE_ACCESS_KEY", "q7YUuFLex4svydz");
+            //var localNodeURL = "http://localhost:5566/wd/hub";
+            const string sauceLabsURL = "http://ondemand.eu-central-1.saucelabs.com/wd/hub";
+
+            //_driver = WebDriverHelper.WebDriverHelper.DeployWebDriver();
+            _driver = new RemoteWebDriver(new Uri(sauceLabsURL),options);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
@@ -27,6 +39,7 @@ namespace Task70
         [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
         [AllureTest("Test login to tut.by using PageObject")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Selenium Test")]
+        [Parallelizable]
         public void TutByLoginTest(string username, string password, string expectedUser)
         {
             //Open tut.by hompage
@@ -51,6 +64,7 @@ namespace Task70
         [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
         [AllureTest("Test logout to tut.by using PageObject")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Войти")]
+        [Parallelizable]
         public void TutByLogoutTest(string username, string password, string homePageButtonText)
         {
             //Open tut.by hompage
@@ -76,6 +90,7 @@ namespace Task70
         [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
         [AllureTest("Test login to tut.by using PageFactory")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Selenium Test")]
+        [Parallelizable]
         public void PageFactoryTutByLoginTest(string username, string password, string expectedUser)
         {
             //Open tut.by hompage
@@ -100,6 +115,7 @@ namespace Task70
         [AllureSeverity(Allure.Commons.Model.SeverityLevel.Minor)]
         [AllureTest("Test logout to tut.by using PageFactory")]
         [TestCase("seleniumtests@tut.by", "123456789zxcvbn", "Войти")]
+        [Parallelizable]
         public void PageFactoryTutByLogoutTest(string username, string password, string homePageButtonText)
         {
             //Open tut.by hompage
