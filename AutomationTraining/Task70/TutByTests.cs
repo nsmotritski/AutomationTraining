@@ -18,20 +18,41 @@ namespace Task70
     public class TutByTests : AllureReport
     {
         private IWebDriver _driver;
+        private readonly string _sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+        private readonly string _sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
 
         [SetUp]
         public void StartBrowser()
         {
+            //DesiredCapabilities caps = new DesiredCapabilities();
+            //caps.SetCapability("browserName", "Safari");
+            //caps.SetCapability("platform", "macOS 10.13");
+            //caps.SetCapability("version", "11.1");
+            //caps.SetCapability("username", _sauceUserName);
+            //caps.SetCapability("accessKey", _sauceAccessKey);
+            //caps.SetCapability("name", TestContext.CurrentContext.Test.Name);
+
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--start-maximized");
-            options.AddAdditionalCapability("SAUCE_USERNAME","nsmotritsky");
-            options.AddAdditionalCapability("SAUCE_ACCESS_KEY", "q7YUuFLex4svydz");
+
             //var localNodeURL = "http://localhost:5566/wd/hub";
-            const string sauceLabsURL = "http://ondemand.eu-central-1.saucelabs.com/wd/hub";
+            var jenkinsGridURL = "http://localhost:4444/wd/hub";
+
+            //const string sauceLabsURL = "http://ondemand.eu-central-1.saucelabs.com/wd/hub";
 
             //_driver = WebDriverHelper.WebDriverHelper.DeployWebDriver();
-            _driver = new RemoteWebDriver(new Uri(sauceLabsURL),options);
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            //_driver = new RemoteWebDriver(new Uri(localNodeURL), options);
+            //_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            //_driver = new RemoteWebDriver(new Uri(localNodeURL), options);
+            _driver = new RemoteWebDriver(new Uri(jenkinsGridURL), options);
+
+            //_driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), caps, TimeSpan.FromSeconds(600));
+            //_driver = new RemoteWebDriver(new Uri("http://ondemand.eu-central-1.saucelabs.com/wd/hub"), caps, TimeSpan.FromSeconds(600));
+
+            //_driver = new RemoteWebDriver(new Uri($"http://\" + {_sauceUserName} + \":\" + {_sauceAccessKey} + \"@ondemand.saucelabs.com:80/wd/hub\""), caps, TimeSpan.FromSeconds(600));
+
+            //_javascriptExecutor = ((IJavaScriptExecutor)_driver);
         }
 
         [AllureLink("1")]
@@ -143,7 +164,7 @@ namespace Task70
             {
                 _driver.TakeScreenshot(TestContext.CurrentContext.Test.Properties["AllureTest"].ToString());
             }
-            _driver.Close();
+            _driver.Quit();
         }
     }
 }
